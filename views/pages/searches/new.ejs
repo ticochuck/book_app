@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="style/reset.css">
+  <link rel="stylesheet" href="style/base.css">
+  <title>Book App</title>
+</head>
+
+<body>
+  <header>
+    <h1>Search for books</h1>
+  </header>
+  <main>
+    <form method="post" action="/new">
+      <div>
+        <input name="search" placeholder="Search Terms" />
+      </div>
+      <div>
+        <label>
+          <input type="radio" name="searchby" value="inauthor">
+          Search By Author
+        </label>
+        <label>
+          <input type="radio" name="searchby" value="intitle">
+          Search By Title
+        </label>
+      </div>
+      <button type="submit">GO!</button>
+    </form>
+  </main>
+  <footer>&copy; 2020 | Lami Beach - Chuck Li</footer>
+</body>
+
+</html>

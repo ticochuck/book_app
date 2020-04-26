@@ -20,9 +20,13 @@ app.get ('/', (request, response) => {
 });
 
 app.get('/test', (request, response) => {
-  response.status(200).render('pages/index.ejs');
+  response.status(200).render('pages/index');
 });
 
+
+app.get('/new', (request, response) => {
+  response.status(200).render('pages/searches/new')
+});
 // app.post('/city', (request, response) => {
 //   response.status(200).send(request.body.article);
 // });
