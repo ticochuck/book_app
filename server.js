@@ -19,17 +19,38 @@ app.get ('/', (request, response) => {
   response.status(200).send('Hola Mundo');
 });
 
+//test route to check if index.ejs works
 app.get('/test', (request, response) => {
   response.status(200).render('pages/index');
 });
 
-
+//new search route
 app.get('/new', (request, response) => {
   response.status(200).render('pages/searches/new')
 });
-// app.post('/city', (request, response) => {
-//   response.status(200).send(request.body.article);
-// });
+
+//show route
+app.post('/searches', (request, response) => {
+  let url = 'https://www.googleapis.com/books/v1/volumes';
+  let queryObject = {
+    q: `${request.body.searchby}:${request.body.search}`,
+  };
+
+  superagent.get(url)
+    .query(queryObject)
+      .then(results => {
+        let books = results.body.items.map(book => new Book(book));
+        response.status(200).render('pages/searches/show', {books: books});
+      });
+});
+
+function Book(data) {
+  this.title = data.volumeInfo.title;
+  this.author = data.volumeInfo.authors;
+  this.image = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.thumbnail : `https://i.imgur.com/J5LVHEL.jpg`;
+  this.description = data.volumeInfo.description;
+}
+
 
 // This will force an error
 app.get('/badthing', (request,response) => {
