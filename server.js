@@ -44,10 +44,11 @@ app.post('/searches', (request, response) => {
       });
 });
 
+let url = 'https://i.imgur.com/J5LVHEL.jpg';
 function Book(data) {
   this.title = data.volumeInfo.title;
   this.author = data.volumeInfo.authors;
-  this.image = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.thumbnail : `https://i.imgur.com/J5LVHEL.jpg`;
+  this.image = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.thumbnail : url;
   this.description = data.volumeInfo.description;
 }
 
